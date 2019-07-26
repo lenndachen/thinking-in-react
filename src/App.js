@@ -21,6 +21,17 @@ function SearchBar() {
 }
 
 function ProductTable(props) {
+  function getProductRow(product) {
+    return <ProductRow product={product} />
+  }
+  let productRows = props.products.map(
+    productRow => <ProductRow product={productRow}/> 
+  );
+  for(let productIndex = 0; productIndex < props.products.length; productIndex++) {
+    let productRow = <ProductRow product={props.products[productIndex]} />;
+    productRows.push(productRow);
+  }
+
   return (
     <table>
       <thead>
@@ -30,8 +41,8 @@ function ProductTable(props) {
         </tr>
       </thead>
       <tbody>
-        <ProductCategoryRow category={props.products[0].category} />
-        <ProductRow product={props.products[0]} />
+        {/*< ProductCategoryRow category={props.products[0].category} /> */}
+        {productRows}
       </tbody>
     </table>
   );
